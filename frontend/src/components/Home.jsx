@@ -29,7 +29,7 @@ function Home() {
   //logout
   const handleLogout = async () => {
     try {
-      const response = await axios.get(`${BACKEND_URL}/user/logout`, {
+      const response = await axios.get(`${BACKEND_URL}/api/v1/user/logout`, {
         withCredentials: true,
       });
       toast.success(response.data.message);
@@ -49,7 +49,7 @@ function Home() {
         const fetchCourses=async()=>{
             try {
                const response=await axios.get(
-                "http://localhost:3000/api/v1/course/courses",
+                `${BACKEND_URL}/api/v1/course/courses`,
                 {withCredentials:true}
             );
                console.log(response.data.courses);

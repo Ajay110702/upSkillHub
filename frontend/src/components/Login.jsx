@@ -17,7 +17,7 @@ function Login() {
 
     try {
       const response = await axios.post(
-        `${BACKEND_URL}/user/login`,
+        `${BACKEND_URL}api/v1/user/login`,
         {
           email,
           password,

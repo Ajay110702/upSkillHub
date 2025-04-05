@@ -33,13 +33,13 @@ function CourseCreate() {
     const admin = JSON.parse(localStorage.getItem("admin"));
     const token = admin.token;
     if (!token) {
-      navigate("/admin/login");
+      navigate("/admin/api/v1/login");
       return;
     }
 
     try {
       const response = await axios.post(
-        `${BACKEND_URL}/course/create`,
+        `${BACKEND_URL}/api/v1/course/create`,
         formData,
         {
           headers: {

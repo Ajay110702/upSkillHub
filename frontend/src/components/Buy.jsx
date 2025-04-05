@@ -28,7 +28,7 @@ function Buy() {
     const fetchBuyCourseData = async () => {
       try {
         const response = await axios.post(
-          `${BACKEND_URL}/course/buy/${courseId}`,
+          `${BACKEND_URL}/api/v1/course/buy/${courseId}`,
           {},
           {
             headers: {
@@ -114,7 +114,7 @@ function Buy() {
       };
       console.log("Payment info: ", paymentInfo);
       await axios
-        .post(`${BACKEND_URL}/order`, paymentInfo, {
+        .post(`${BACKEND_URL}api/v1/order`, paymentInfo, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
