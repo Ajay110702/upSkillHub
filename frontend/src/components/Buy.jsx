@@ -114,7 +114,7 @@ function Buy() {
       };
       console.log("Payment info: ", paymentInfo);
       await axios
-        .post(`${BACKEND_URL}api/v1/order`, paymentInfo, {
+        .post(`${BACKEND_URL}/api/v1/order`, paymentInfo, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
