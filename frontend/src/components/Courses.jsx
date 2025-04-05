@@ -53,9 +53,10 @@ function Courses() {
       const response = await axios.get(`${BACKEND_URL}/api/v1/user/logout`, {
         withCredentials: true,
       });
-      toast.success(response.data.message);
       localStorage.removeItem("user");
       setIsLoggedIn(false);
+      toast.success(response.data.message);
+
     } catch (error) {
       console.log("Error in logging out ", error);
       toast.error(error.response.data.errors || "Error in logging out");
