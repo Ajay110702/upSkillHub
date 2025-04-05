@@ -14,7 +14,6 @@ function Purchases() {
   const [purchases, setPurchase] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [errorMessage, setErrorMessage] = useState(true);
-  const [loading,setLoading]=useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar open state
 
   const navigate = useNavigate();
@@ -54,7 +53,7 @@ function Purchases() {
     }
          
       };
-      fetchPurchases()
+      fetchPurchases();
     },
   );
 
@@ -79,25 +78,17 @@ function Purchases() {
    // Toggle sidebar visibility
    const handleLogout = async () => {
     try {
-      const user = JSON.parse(localStorage.getItem("user"));
-      const token = user?.token;
-  
-      if (!token) {
-        toast.error("No token found. Login first.");
-        return;
-      }
-  
+     
       const response = await axios.get(`${BACKEND_URL}/api/v1/user/logout`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+      withCredentials:true,
       });
   
       toast.success(response.data.message);
       localStorage.removeItem("user");
+      navigate('/login');
       setIsLoggedIn(false);
     } catch (error) {
-      console.log("Error in logging out", error.response?.data || error.message);
+      console.log("Error in logging out",error);
       toast.error(error.response?.data?.errors || "Error in logging out");
     }
   };

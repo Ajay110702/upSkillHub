@@ -27,48 +27,25 @@ function Home() {
   }, []);
 
   //logout
-  // const handleLogout = async () => {
-  //   try {
-  //     const response = await axios.get(`${BACKEND_URL}/api/v1/user/logout`, {
-  //       withCredentials: true,
-  //     });
-  //     localStorage.removeItem("user");
-  //     toast.success(response.data.message);
-  //     setIsLoggedIn(false);
-  //   } catch (error) {
-  //     console.log("Error in logging out ", error);
-  //     toast.error(error.response.data.errors || "Error in logging out");
-  //   }
-  // };
+  const handleLogout = async () => {
+    try {
+      const response = await axios.get(`${BACKEND_URL}/api/v1/user/logout`, {
+        withCredentials: true,
+      });
+      toast.success(response.data.message);
+      localStorage.removeItem("user");
+      setIsLoggedIn(false);
+    } catch (error) {
+      console.log("Error in logging out ", error);
+      toast.error(error.response.data.errors || "Error in logging out");
+    }
+  };
 
   
  
 
     //fetch courses
-    const handleLogout = async () => {
-      try {
-        const user = JSON.parse(localStorage.getItem("user"));
-        const token = user?.token;
-    
-        if (!token) {
-          toast.error("No token found. Login first.");
-          return;
-        }
-    
-        const response = await axios.get(`${BACKEND_URL}/api/v1/user/logout`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-    
-        toast.success(response.data.message);
-        localStorage.removeItem("user");
-        setIsLoggedIn(false);
-      } catch (error) {
-        console.log("Error in logging out", error.response?.data || error.message);
-        toast.error(error.response?.data?.errors || "Error in logging out");
-      }
-    };
+   
      
     useEffect(()=>{
         const fetchCourses=async()=>{
